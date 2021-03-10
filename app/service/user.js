@@ -8,8 +8,18 @@ class UserService extends Service {
     return data;
   }
   async create(option) {
-    const model = await this.app.model.User.create(option);
-    return model;
+    const data = await this.app.model.User.create(option);
+    return data;
+  }
+  async update(id, option) {
+    console.log(id, option);
+
+    const data = await this.app.model.User.findByIdAndUpdate(id, { $set: option });
+    return data;
+  }
+  async delete(id) {
+    const data = await this.app.model.User.findByIdAndDelete(id);
+    return data;
   }
 }
 

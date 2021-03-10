@@ -13,7 +13,9 @@ class UserController extends Controller {
   }
   async create() {
     const { ctx, service } = this;
-    const res = await service.user.create(ctx.request.body.data);
+    console.log(ctx.request.body);
+
+    const res = await service.user.create(ctx.request.body);
     ctx.body = {
       code: 200,
       data: res,
@@ -21,15 +23,17 @@ class UserController extends Controller {
   }
   async update() {
     const { ctx, service } = this;
-    const res = await service.user.find();
+    const { id, ...rest } = ctx.request.body;
+    const res = await service.user.update(id, rest);
     ctx.body = {
       code: 200,
       data: res,
     };
   }
-  async remove() {
+  async delete() {
     const { ctx, service } = this;
-    const res = await service.user.find();
+    const { id } = ctx.request.body;
+    const res = await service.user.delete(id);
     ctx.body = {
       code: 200,
       data: res,

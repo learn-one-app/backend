@@ -26,6 +26,7 @@ module.exports = (appInfo) => {
     url: 'mongodb://127.0.0.1/blog',
     options: {
       useUnifiedTopology: true,
+      useFindAndModify: false,
     },
   };
 
